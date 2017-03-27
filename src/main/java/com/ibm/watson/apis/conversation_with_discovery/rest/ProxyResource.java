@@ -106,6 +106,8 @@ public class ProxyResource {
     // Configure the Watson Developer Cloud SDK to make a call to the
     // appropriate conversation service.
 
+    System.out.println("Muchacha cansona");
+
     ConversationService service =
         new ConversationService(API_VERSION != null ? API_VERSION : ConversationService.VERSION_DATE_2016_09_20);
 
