@@ -108,6 +108,9 @@ public class ProxyResource {
 
     ConversationService service =
         new ConversationService(API_VERSION != null ? API_VERSION : ConversationService.VERSION_DATE_2016_09_20);
+
+    System.out.println("Username: "+username);
+    System.out.println("Password: "+password);
     if ((username != null) || (password != null)) {
       service.setUsernameAndPassword(username, password);
     }
@@ -192,6 +195,7 @@ public class ProxyResource {
       } else if (e.getMessage().contains("URL workspaceid parameter is not a valid GUID.")) {
         errorsOutput.put(ERROR, Messages.getString("ProxyResource.INVALID_WORKSPACEID"));
       } else {
+        e.printStackTrace();
         errorsOutput.put(ERROR, Messages.getString("ProxyResource.GENERIC_ERROR"));
 
       }
