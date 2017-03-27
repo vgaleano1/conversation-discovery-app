@@ -117,6 +117,8 @@ public class ProxyResource {
       service.setUsernameAndPassword(username, password);
     }
 
+    url == null ? Constants.CONVERSATION_URL : url;
+    System.out.println("Url: "+url);
     service.setEndPoint(url == null ? Constants.CONVERSATION_URL : url);
 
     // Use the previously configured service object to make a call to the
