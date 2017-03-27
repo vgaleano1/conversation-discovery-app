@@ -26,8 +26,8 @@ stages:
       application: ${CF_APP}
     script: |-
       #!/bin/bash
-      cf create-service conversation free my-conversation-service
-      cf create-service discovery free my-discovery-service
+      cf create-service conversation free conversation-service
+      cf create-service discovery free discovery-service
       # Push app
       export CF_APP_NAME="$CF_APP"
       cf push "${CF_APP_NAME}"
