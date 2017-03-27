@@ -122,7 +122,7 @@ public class ProxyResource {
     // user's question or if we
     // should call the discovery service to obtain better answers
 
-    if (response.getOutput().containsKey("action")
+    /*if (response.getOutput().containsKey("action")
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
       String query = response.getInputText();
 
@@ -151,7 +151,7 @@ public class ProxyResource {
         // Append the discovery answers to the output object that will
         // be sent to the UI
         output.put("CEPayload", docs);
-      }
+      }*/
     }
 
     return response;
@@ -193,6 +193,7 @@ public class ProxyResource {
         errorsOutput.put(ERROR, Messages.getString("ProxyResource.INVALID_WORKSPACEID"));
       } else {
         errorsOutput.put(ERROR, Messages.getString("ProxyResource.GENERIC_ERROR"));
+
       }
 
       logger.error(Messages.getString("ProxyResource.QUERY_EXCEPTION") + e.getMessage());
