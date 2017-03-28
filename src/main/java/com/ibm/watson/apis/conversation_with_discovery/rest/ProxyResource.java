@@ -122,11 +122,15 @@ public class ProxyResource {
 
     // Use the previously configured service object to make a call to the
     // conversational service
+
+
     MessageResponse response = service.message(id, request).execute();
 
     // Determine if conversation's response is sufficient to answer the
     // user's question or if we
     // should call the discovery service to obtain better answers
+
+    System.out.println("Response "+response);
 
     if (response.getOutput().containsKey("action")
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
