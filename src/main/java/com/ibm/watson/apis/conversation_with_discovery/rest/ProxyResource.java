@@ -52,13 +52,13 @@ public class ProxyResource {
   private static String API_VERSION;
   private static final String ERROR = "error";
   private static final Logger logger = LogManager.getLogger(ProxyResource.class.getName());
-  
+
   private DiscoveryClient discoveryClient = new DiscoveryClient();
-  
+
   private String password = System.getenv("CONVERSATION_PASSWORD");
-  
+
   private String url;
-  
+
   private String username = System.getenv("CONVERSATION_USERNAME");
 
   private MessageRequest buildMessageFromPayload(InputStream body) {
@@ -106,7 +106,7 @@ public class ProxyResource {
     // Configure the Watson Developer Cloud SDK to make a call to the
     // appropriate conversation service.
 
-    
+
 
     ConversationService service =
         new ConversationService(API_VERSION != null ? API_VERSION : ConversationService.VERSION_DATE_2016_09_20);
@@ -115,7 +115,7 @@ public class ProxyResource {
       service.setUsernameAndPassword(username, password);
     }
 
-    
+
 
     System.out.println("Url: "+Constants.CONVERSATION_URL );
     service.setEndPoint(url == null ? Constants.CONVERSATION_URL : url);
@@ -161,6 +161,10 @@ public class ProxyResource {
 
         // Append the discovery answers to the output object that will
         // be sent to the UI
+
+        for (DocumentPayload doc : docs){
+          System.out.println("Titulo del documento "+doc.getTitle());
+        }
         output.put("CEPayload", docs);
         response.setOutput(output);
       }
@@ -214,7 +218,7 @@ public class ProxyResource {
     }
     return Response.ok(new Gson().toJson(response, MessageResponse.class)).type(MediaType.APPLICATION_JSON).build();
   }
-  
+
   /**
    * Sets the conversation API version.
    *
