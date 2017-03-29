@@ -130,7 +130,7 @@ public class ProxyResource {
     // user's question or if we
     // should call the discovery service to obtain better answers
 
-    System.out.println("Response "+response);
+    System.out.println("Response "+response.getOutput());
 
     if (response.getOutput().containsKey("action")
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
