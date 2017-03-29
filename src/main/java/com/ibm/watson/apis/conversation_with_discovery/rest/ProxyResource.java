@@ -162,6 +162,7 @@ public class ProxyResource {
         // Append the discovery answers to the output object that will
         // be sent to the UI
         output.put("CEPayload", docs);
+        response.setOutput(output);
       }
     }
 
