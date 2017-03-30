@@ -157,7 +157,7 @@ public class ProxyResource {
 
         // Send the user's question to the discovery service
         System.out.println("Se conecto con Discovery!");
-        List<DocumentPayload> docs = discoveryClient.getDocuments("Ford");
+        List<DocumentPayload> docs = discoveryClient.getDocuments(query);
 
         // Append the discovery answers to the output object that will
         // be sent to the UI
