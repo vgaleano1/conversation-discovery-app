@@ -43,7 +43,10 @@ import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.ibm.watson.developer_cloud.service.exception.UnauthorizedException;
 import com.ibm.watson.developer_cloud.util.GsonSingleton;
-
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.ToneAnalyzer;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneAnalysis;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneCategory;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneScore;
 /**
  * The Class ProxyResource.
  */
@@ -59,7 +62,13 @@ public class ProxyResource {
 
   private String url;
 
+  private StringBuilder completeConversation = new StringBuilder();
+
   private String username = System.getenv("CONVERSATION_USERNAME");
+
+  private String usernameToneAnalyzer = System.getenv("TONE_ANALYZER_USERNAME");
+
+  private String passwordToneAnalyzer = System.getenv("TONE_ANALYZER_PASSWORD");
 
   private MessageRequest buildMessageFromPayload(InputStream body) {
     StringBuilder sbuilder = null;
@@ -115,6 +124,8 @@ public class ProxyResource {
       service.setUsernameAndPassword(username, password);
     }
 
+    //Conexion con Tone Analyzer
+
 
 
     System.out.println("Url: "+Constants.CONVERSATION_URL );
@@ -136,6 +147,7 @@ public class ProxyResource {
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
       String query = response.getInputText();
 
+      completeConversation.append(query);
       // Extract the user's original query from the conversational
       // response
       if ((query != null) && !query.isEmpty()) {
@@ -168,6 +180,28 @@ public class ProxyResource {
         output.put("CEPayload", docs);
         response.setOutput(output);
       }
+    }
+
+    if (response.getOutput().containsKey("action")
+        && (response.getOutput().get("action").toString().indexOf("call_tone_analyzer") != -1)) {
+
+          ToneAnalyzer serviceToneAnalyzer = new ToneAnalyzer(ToneAnalyzer.VERSION_DATE_2016_02_11);
+          serviceToneAnalyzer.setEndPoint(Constants.TONE_ANALYZER_URL);
+
+          if ((usernameToneAnalyzer != null) || (passwordToneAnalyzer != null)) {
+            serviceToneAnalyzer.setUsernameAndPassword(usernameToneAnalyzer, passwordToneAnalyzer);
+          }
+
+          ToneAnalysis result = serviceToneAnalyzer.getTone(reviewText).execute();
+          for(ToneCategory tc : result.getDocumentTone().getTones()){
+            for(ToneScore ts : tc.getTones()){
+              System.out.println(ts.getName());
+              System.out.println(String.valueOf(ts.getScore()));
+            }
+          }
+
+
+
     }
 
     return response;

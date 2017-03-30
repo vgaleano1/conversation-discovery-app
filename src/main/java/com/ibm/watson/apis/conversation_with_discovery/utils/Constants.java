@@ -44,6 +44,10 @@ public class Constants {
   /** The Constant DISCOVERY_URL. */
   public static final String DISCOVERY_URL = "https://gateway.watsonplatform.net/discovery/api/";
 
+  /** The Constant DISCOVERY_URL. */
+  public static final String TONE_ANALYZER_URL = "https://gateway.watsonplatform.net/tone-analyzer/api";
+
+
   /** The Constant DISCOVERY_VERSION. */
   public static final String DISCOVERY_VERSION = "2016-12-01";
 
