@@ -192,7 +192,7 @@ public class ProxyResource {
             serviceToneAnalyzer.setUsernameAndPassword(usernameToneAnalyzer, passwordToneAnalyzer);
           }
 
-          ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(reviewText).execute();
+          ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(completeConversation.toString()).execute();
           for(ToneCategory tc : resultToneAnalysis.getDocumentTone().getTones()){
             for(ToneScore ts : tc.getTones()){
               System.out.println(ts.getName());
