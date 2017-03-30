@@ -54,6 +54,7 @@ public class DiscoveryQuery {
    * @throws Exception the exception
    */
   public QueryResponse query(String userQuery) throws Exception {
+    System.out.println("Collection "+collectionId);
     QueryRequest.Builder queryBuilder = new QueryRequest.Builder(environmentId, collectionId);
 
     StringBuilder sb = new StringBuilder();
