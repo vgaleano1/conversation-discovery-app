@@ -108,7 +108,8 @@ public class ProxyResourceTest {
 
     InputStream inputStream = new ByteArrayInputStream(payload.getBytes("UTF-8"));
 
-    Response jaxResponse = Response.ok(new Gson().toJson(response, MessageResponse.class)).type(MediaType.APPLICATION_JSON).build();
+
+    Response jaxResponse = Response.ok(new Gson().toJson(mockResponse, MessageResponse.class)).type(MediaType.APPLICATION_JSON).build();
     MessageResponse serviceResponse = GsonSingleton.getGsonWithoutPrettyPrinting()
         .fromJson(jaxResponse.getEntity().toString(), MessageResponse.class);
 
