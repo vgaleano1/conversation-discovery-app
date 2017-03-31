@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
