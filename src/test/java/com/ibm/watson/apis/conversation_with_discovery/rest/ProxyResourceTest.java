@@ -97,9 +97,9 @@ public class ProxyResourceTest {
     String text = "I'd like to get a quote to replace my windows";
 
     MessageResponse mockResponse = loadFixture(FIXTURE, MessageResponse.class);
-    ProxyResource proxy = new ProxyResource();
+    //ProxyResource proxy = new ProxyResource();
 
-    proxy.setCredentials("dummy", "dummy", StringUtils.chop(server.url("/").toString()));
+    //proxy.setCredentials("dummy", "dummy", StringUtils.chop(server.url("/").toString()));
 
     server.enqueue(jsonResponse(mockResponse));
 
