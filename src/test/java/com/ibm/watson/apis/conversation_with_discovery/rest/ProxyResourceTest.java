@@ -26,7 +26,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
@@ -109,8 +108,7 @@ public class ProxyResourceTest {
 
     InputStream inputStream = new ByteArrayInputStream(payload.getBytes("UTF-8"));
 
-
-    Response jaxResponse = Response.ok(new Gson().toJson(mockResponse, MessageResponse.class)).type(MediaType.APPLICATION_JSON).build();
+    Response jaxResponse = proxy.postMessage(WORKSPACE_ID, inputStream);
     MessageResponse serviceResponse = GsonSingleton.getGsonWithoutPrettyPrinting()
         .fromJson(jaxResponse.getEntity().toString(), MessageResponse.class);
 
