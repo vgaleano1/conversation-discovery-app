@@ -185,6 +185,7 @@ public class ProxyResource {
     if (response.getOutput().containsKey("action")
         && (response.getOutput().get("action").toString().indexOf("call_tone_analyzer") != -1)) {
 
+          System.out.println("Se conecto con ToneAnalyzer!");
           ToneAnalyzer serviceToneAnalyzer = new ToneAnalyzer(ToneAnalyzer.VERSION_DATE_2016_02_11);
           serviceToneAnalyzer.setEndPoint(Constants.TONE_ANALYZER_URL);
 
