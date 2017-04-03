@@ -66,9 +66,9 @@ public class ProxyResource {
 
   private String username = System.getenv("CONVERSATION_USERNAME");
 
-  //private String usernameToneAnalyzer = System.getenv("TONE_ANALYZER_USERNAME");
+  private String usernameToneAnalyzer = System.getenv("TONE_ANALYZER_USERNAME");
 
-  //private String passwordToneAnalyzer = System.getenv("TONE_ANALYZER_PASSWORD");
+  private String passwordToneAnalyzer = System.getenv("TONE_ANALYZER_PASSWORD");
 
   private MessageRequest buildMessageFromPayload(InputStream body) {
     StringBuilder sbuilder = null;
@@ -182,7 +182,7 @@ public class ProxyResource {
       }
     }
 
-    /*if (response.getOutput().containsKey("action")
+    if (response.getOutput().containsKey("action")
         && (response.getOutput().get("action").toString().indexOf("call_tone_analyzer") != -1)) {
 
           ToneAnalyzer serviceToneAnalyzer = new ToneAnalyzer(ToneAnalyzer.VERSION_DATE_2016_02_11);
@@ -202,7 +202,7 @@ public class ProxyResource {
 
 
 
-    }*/
+    }
 
     return response;
   }
