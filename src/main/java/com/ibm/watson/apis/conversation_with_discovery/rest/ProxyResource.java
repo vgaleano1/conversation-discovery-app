@@ -187,7 +187,7 @@ public class ProxyResource {
           System.out.println("Se conecto con ToneAnalyzer!");
 
           ToneAnalyzerClient toneServiceClient = new  ToneAnalyzerClient();
-          toneServiceClient.getTone();
+          toneServiceClient.getTone(completeConversation);
 
     }
 

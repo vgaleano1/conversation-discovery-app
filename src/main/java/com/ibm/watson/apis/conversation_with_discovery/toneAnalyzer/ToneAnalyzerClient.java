@@ -66,7 +66,7 @@ public class ToneAnalyzerClient {
     if ((usernameToneAnalyzer != null) || (passwordToneAnalyzer != null)) {
       serviceToneAnalyzer.setUsernameAndPassword(usernameToneAnalyzer, passwordToneAnalyzer);
     }
-    ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(completeConversation.toString()).execute();
+    ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(input).execute();
     for(ToneCategory tc : resultToneAnalysis.getDocumentTone().getTones()){
       for(ToneScore ts : tc.getTones()){
         System.out.println("Name:  "+ts.getName());
