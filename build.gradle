@@ -31,9 +31,8 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-
-    compile 'com.ibm.watson.developer_cloud:java-sdk:3.7.1'
     compile 'javax.ws.rs:jsr311-api:1.1.1'
+    compile 'com.ibm.watson.developer_cloud:java-sdk:3.7.1'
     compile 'com.google.code.gson:gson:2.6.2'
     compile group: 'org.apache.solr', name: 'solr-solrj', version: '5.4.1'
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.3.1'
