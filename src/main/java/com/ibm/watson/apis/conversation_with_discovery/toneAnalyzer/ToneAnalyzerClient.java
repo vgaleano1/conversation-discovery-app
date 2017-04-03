@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package com.ibm.watson.apis.conversation_with_discovery.discovery;
+package com.ibm.watson.apis.conversation_with_discovery.toneAnalyzer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +30,22 @@ import com.ibm.watson.apis.conversation_with_discovery.utils.Constants;
 import com.ibm.watson.apis.conversation_with_discovery.utils.Messages;
 import com.ibm.watson.developer_cloud.discovery.v1.model.query.QueryResponse;
 
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.ToneAnalyzer;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneAnalysis;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneCategory;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneScore;
+
 /**
  * DiscoveryClient.
  */
-public class DiscoveryClient {
+public class ToneAnalyzerClient {
 
-  private static final Logger logger = LogManager.getLogger(DiscoveryClient.class.getName());
+
+  private String usernameToneAnalyzer = System.getenv("TONE_ANALYZER_USERNAME");
+
+  private String passwordToneAnalyzer = System.getenv("TONE_ANALYZER_PASSWORD");
+
+  private static final Logger logger = LogManager.getLogger(ToneAnalyzerClient.class.getName());
 
   private static final int SNIPPET_LENGTH = 150;
 
@@ -49,14 +59,21 @@ public class DiscoveryClient {
    *         possible answer to the user's query
    * @throws Exception the exception
    */
-  public List<DocumentPayload> getDocuments(String input) throws Exception {
-    DiscoveryQuery discoveryQuery = new DiscoveryQuery();
-    QueryResponse output = discoveryQuery.query(input);
-    List<Map<String, Object>> results = output.getResults();
-    String jsonRes = new Gson().toJson(results);
-    JsonElement jelement = new JsonParser().parse(jsonRes);
+  public ToneAnalysis getTone(String input) throws Exception {
+    ToneAnalyzer serviceToneAnalyzer = new ToneAnalyzer(ToneAnalyzer.VERSION_DATE_2016_02_11);
+    serviceToneAnalyzer.setEndPoint(Constants.TONE_ANALYZER_URL);
 
-    return createPayload(jelement);
+    if ((usernameToneAnalyzer != null) || (passwordToneAnalyzer != null)) {
+      serviceToneAnalyzer.setUsernameAndPassword(usernameToneAnalyzer, passwordToneAnalyzer);
+    }
+    ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(completeConversation.toString()).execute();
+    for(ToneCategory tc : resultToneAnalysis.getDocumentTone().getTones()){
+      for(ToneScore ts : tc.getTones()){
+        System.out.println("Name:  "+ts.getName());
+        System.out.println("Score: "+String.valueOf(ts.getScore()));
+      }
+    }
+    return resultToneAnalysis;
   }
 
   /**

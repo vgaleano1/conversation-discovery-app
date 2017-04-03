@@ -35,6 +35,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.ibm.watson.apis.conversation_with_discovery.discovery.DiscoveryClient;
+import com.ibm.watson.apis.conversation_with_discovery.ToneAnalyzer.ToneAnalyzerClient;
 import com.ibm.watson.apis.conversation_with_discovery.payload.DocumentPayload;
 import com.ibm.watson.apis.conversation_with_discovery.utils.Constants;
 import com.ibm.watson.apis.conversation_with_discovery.utils.Messages;
@@ -66,9 +67,7 @@ public class ProxyResource {
 
   private String username = System.getenv("CONVERSATION_USERNAME");
 
-  private String usernameToneAnalyzer = System.getenv("TONE_ANALYZER_USERNAME");
 
-  private String passwordToneAnalyzer = System.getenv("TONE_ANALYZER_PASSWORD");
 
   private MessageRequest buildMessageFromPayload(InputStream body) {
     StringBuilder sbuilder = null;
@@ -186,22 +185,9 @@ public class ProxyResource {
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
 
           System.out.println("Se conecto con ToneAnalyzer!");
-          ToneAnalyzer serviceToneAnalyzer = new ToneAnalyzer(ToneAnalyzer.VERSION_DATE_2016_02_11);
-          serviceToneAnalyzer.setEndPoint(Constants.TONE_ANALYZER_URL);
 
-          if ((usernameToneAnalyzer != null) || (passwordToneAnalyzer != null)) {
-            serviceToneAnalyzer.setUsernameAndPassword(usernameToneAnalyzer, passwordToneAnalyzer);
-          }
-
-          ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(completeConversation.toString()).execute();
-          for(ToneCategory tc : resultToneAnalysis.getDocumentTone().getTones()){
-            for(ToneScore ts : tc.getTones()){
-              System.out.println("Name:  "+ts.getName());
-              System.out.println("Score: "+String.valueOf(ts.getScore()));
-            }
-          }
-
-
+          ToneAnalyzerClient toneServiceClient = new  ToneAnalyzerClient();
+          toneServiceClient.getTone();
 
     }
 
