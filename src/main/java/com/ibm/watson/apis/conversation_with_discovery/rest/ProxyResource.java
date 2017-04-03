@@ -196,8 +196,8 @@ public class ProxyResource {
           ToneAnalysis resultToneAnalysis = serviceToneAnalyzer.getTone(completeConversation.toString()).execute();
           for(ToneCategory tc : resultToneAnalysis.getDocumentTone().getTones()){
             for(ToneScore ts : tc.getTones()){
-              System.out.println(ts.getName());
-              System.out.println(String.valueOf(ts.getScore()));
+              System.out.println("Name: "+ts.getName());
+              System.out.println("Score: "+String.valueOf(ts.getScore()));
             }
           }
 
