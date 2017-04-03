@@ -44,9 +44,9 @@ import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.ibm.watson.developer_cloud.service.exception.UnauthorizedException;
 import com.ibm.watson.developer_cloud.util.GsonSingleton;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.ToneAnalyzer;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneAnalysis;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneCategory;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneScore;
+//import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneAnalysis;
+//import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneCategory;
+//import com.ibm.watson.developer_cloud.tone_analyzer.v3_beta.model.ToneScore;
 /**
  * The Class ProxyResource.
  */
