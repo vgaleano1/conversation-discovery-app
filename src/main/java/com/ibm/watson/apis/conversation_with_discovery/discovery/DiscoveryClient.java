@@ -54,6 +54,7 @@ public class DiscoveryClient {
     QueryResponse output = discoveryQuery.query(input);
     List<Map<String, Object>> results = output.getResults();
     String jsonRes = new Gson().toJson(results);
+    System.out.println("jsonRes "+jsonRes);
     JsonElement jelement = new JsonParser().parse(jsonRes);
 
     return createPayload(jelement);
