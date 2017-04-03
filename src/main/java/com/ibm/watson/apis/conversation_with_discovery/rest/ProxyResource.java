@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.ibm.watson.apis.conversation_with_discovery.discovery.DiscoveryClient;
-import com.ibm.watson.apis.conversation_with_discovery.ToneAnalyzer.ToneAnalyzerClient;
+import com.ibm.watson.apis.conversation_with_discovery.toneAnalyzer.ToneAnalyzerClient;
 import com.ibm.watson.apis.conversation_with_discovery.payload.DocumentPayload;
 import com.ibm.watson.apis.conversation_with_discovery.utils.Constants;
 import com.ibm.watson.apis.conversation_with_discovery.utils.Messages;
@@ -168,7 +168,7 @@ public class ProxyResource {
 
         // Send the user's question to the discovery service
         System.out.println("Se conecto con Discovery!");
-        List<DocumentPayload> docs = discoveryClient.getDocuments(query);
+        List<DocumentPayload> docs = discoveryClient.getDocuments("tórax");
 
         // Append the discovery answers to the output object that will
         // be sent to the UI
