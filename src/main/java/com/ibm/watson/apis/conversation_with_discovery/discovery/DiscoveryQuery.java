@@ -65,7 +65,9 @@ public class DiscoveryQuery {
     sb.append(userQuery);
 
     queryBuilder.query(sb.toString());
-    QueryResponse queryResponse = discovery.query(queryBuilder.build()).execute();
+    QueryRequest queryBuild = queryBuilder.build();
+    System.out.println("query "+queryBuild.getQuery());
+    QueryResponse queryResponse = discovery.query(queryBuild).execute();
 
     return queryResponse;
   }
