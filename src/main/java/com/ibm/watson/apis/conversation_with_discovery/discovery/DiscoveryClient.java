@@ -77,9 +77,11 @@ public class DiscoveryClient {
       DocumentPayload documentPayload = new DocumentPayload();
       String id = jarray.get(i).getAsJsonObject().get(Constants.DISCOVERY_FIELD_ID).toString().replaceAll("\"", "");
       documentPayload.setId(id);
+      System.out.println("Title Document "+Constants.DISCOVERY_FIELD_TITLE).toString().replaceAll("\"", ""));
       documentPayload.setTitle(
           jarray.get(i).getAsJsonObject().get(Constants.DISCOVERY_FIELD_TITLE).toString().replaceAll("\"", ""));
       if (jarray.get(i).getAsJsonObject().get(Constants.DISCOVERY_FIELD_BODY) != null) {
+      	System.out.println("La respuesta tiene cuerpo");
         String body = jarray.get(i).getAsJsonObject()
             .get(Constants.DISCOVERY_FIELD_BODY)
             .toString().replaceAll("\"", "");
