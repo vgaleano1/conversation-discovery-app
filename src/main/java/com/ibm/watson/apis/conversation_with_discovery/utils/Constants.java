@@ -24,7 +24,7 @@ public class Constants {
   public static final String CONVERSATION_URL = "https://gateway.watsonplatform.net/conversation/api";
 
   /** The Constant DISCOVERY_FIELD_BODY. */
-  public static final String DISCOVERY_FIELD_BODY = "html";
+  public static final String DISCOVERY_FIELD_BODY = "contentHtml";
 
   /** The Constant DISCOVERY_FIELD_CONFIDENCE. */
   public static final String DISCOVERY_FIELD_CONFIDENCE = "score";
