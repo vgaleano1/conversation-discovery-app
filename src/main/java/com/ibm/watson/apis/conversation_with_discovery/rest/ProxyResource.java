@@ -123,7 +123,6 @@ public class ProxyResource {
       service.setUsernameAndPassword(username, password);
     }
 
-    //Conexion con Tone Analyzer
 
 
 
@@ -146,7 +145,7 @@ public class ProxyResource {
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
       String query = response.getInputText();
 
-      completeConversation.append(query);
+      completeConversation.append("Pediatric");
       // Extract the user's original query from the conversational
       // response
       if ((query != null) && !query.isEmpty()) {
