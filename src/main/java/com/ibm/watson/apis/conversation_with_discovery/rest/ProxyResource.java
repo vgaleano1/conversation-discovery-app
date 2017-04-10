@@ -145,7 +145,7 @@ public class ProxyResource {
         && (response.getOutput().get("action").toString().indexOf("call_discovery") != -1)) {
       String query = response.getInputText();
 
-      completeConversation.append("Pediatric");
+      completeConversation.append(query);
       // Extract the user's original query from the conversational
       // response
       if ((query != null) && !query.isEmpty()) {
@@ -167,7 +167,7 @@ public class ProxyResource {
 
         // Send the user's question to the discovery service
         System.out.println("Se conecto con Discovery 2!");
-        List<DocumentPayload> docs = discoveryClient.getDocuments(query);
+        List<DocumentPayload> docs = discoveryClient.getDocuments("pediatric");
 
         // Append the discovery answers to the output object that will
         // be sent to the UI
