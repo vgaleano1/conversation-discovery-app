@@ -219,6 +219,7 @@ public class ProxyResource {
       response = getWatsonResponse(request, id);
 
     } catch (Exception e) {
+    	e.printStackTrace();
       if (e instanceof UnauthorizedException) {
         errorsOutput.put(ERROR, Messages.getString("ProxyResource.INVALID_CONVERSATION_CREDS"));
       } else if (e instanceof IllegalArgumentException) {
